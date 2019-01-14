@@ -1,0 +1,30 @@
+{
+  "name": "ms-be-a-code-challenge",
+  "version": "1.0.0",
+  "description": "An small Twitter REST API app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joel-rojas/ms-be-code-challenge.git"
+  },
+  "keywords": [
+    "TwitterAPI",
+    "REST",
+    "Express.js"
+  ],
+  "author": "Emerson Joel Rojas Soliz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/joel-rojas/ms-be-code-challenge/issues"
+  },
+  "homepage": "https://github.com/joel-rojas/ms-be-code-challenge#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "express.js": "^1.0.0",
+    "twitter": "^1.7.1"
+  }
+}
