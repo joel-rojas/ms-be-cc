@@ -3,6 +3,7 @@
 const TwitterClient = require('twitter');
 const config = require('../../config.json');
 const cachedData = {
+    timesCalled: 0,
     cachedTime: 0,
     twitterList: null
 };
@@ -19,19 +20,29 @@ module.exports = {
 };
 
 
-function twitterAPICallHelper(res, cachedName, apiPromise) {
+function twitterAPICallHelper(res, cached, apiPromise) {
     const MAX_TIMEOUT = 60000;
-    const {cachedTime} = cachedData;
+    const MAX_API_CALLS = 3;
     const currentTime = Date.now();
-    const isGreaterTimeout = (currentTime - cachedTime) > MAX_TIMEOUT;
-    if (isGreaterTimeout) {
-        cachedData.cachedTime = Date.now();
-        return apiPromise.then((data) => {
-            cachedData[cachedName] = data;
-            return res.json(data);
-        }).catch(error => res.send(error));
-    } 
-    return res.json(cachedData[cachedName]);
+    const isGreaterTimeout = (currentTime - cachedData.cachedTime) > MAX_TIMEOUT;
+    if (cachedData[cached.dataName] && cachedData[cached.dataName][cached.name] && !isGreaterTimeout && cachedData.timesCalled === MAX_API_CALLS) {
+        return res.json(cachedData[cached.dataName][cached.name]);
+    } else {
+        cachedData.timesCalled = cachedData.timesCalled === MAX_API_CALLS ? 0 : cachedData.timesCalled;
+        if (isGreaterTimeout || cachedData.timesCalled < MAX_API_CALLS) {
+            return apiPromise.then((data) => {
+                if (cached.dataName === 'twitterList') {
+                    if (!cachedData[cached.dataName]) {
+                        cachedData[cached.dataName] = {};
+                    }
+                    cachedData[cached.dataName][cached.name] = data;
+                }
+                cachedData.cachedTime = Date.now();
+                cachedData.timesCalled++;
+                return res.json(data);
+            }).catch(error => res.send(error));
+        }
+    }
     
 }
 
@@ -40,7 +51,7 @@ function twitterUserList (req, res) {
     const username = urlParams.username;
     const url = `statuses/user_timeline`;
     const params = {screen_name: username, count: 30};
-    return twitterAPICallHelper(res, 'twitterList', client.get(url, params));
+    return twitterAPICallHelper(res, {dataName: 'twitterList', name: username}, client.get(url, params));
 }
 
     

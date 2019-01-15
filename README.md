@@ -1,3 +1,3 @@
 ## Twitter API Server
 
-This small REST API works to specifically use the Twitter statuses/user_timeline API.
+This small REST API works to specifically get data from Twitter statuses/user_timeline API.

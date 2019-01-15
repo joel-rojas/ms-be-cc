@@ -2,13 +2,13 @@
 
 const config = require('./config.json');
 const express = require('express');
-var bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 const cors = require('cors');
 const routes = require('./routes');
 
 const app = express();
 
-var server = require('http').createServer(app);
+const server = require('http').createServer(app);
 
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(cors());
