@@ -30,19 +30,17 @@ class TwitterController {
                 return res.json(cachedData[cached.dataName][cached.name]);
         }
         cachedData.timesCalled = cachedData.timesCalled === MAX_API_CALLS ? 0 : cachedData.timesCalled;
-        if (isGreaterTimeout || cachedData.timesCalled < MAX_API_CALLS) {
-            return apiPromise.then((data) => {
-                if (cached.dataName === 'twitterList') {
-                    if (!cachedData[cached.dataName]) {
-                        cachedData[cached.dataName] = {};
-                    }
-                    cachedData[cached.dataName][cached.name] = data;
+        return apiPromise.then((data) => {
+            if (cached.dataName === 'twitterList') {
+                if (!cachedData[cached.dataName]) {
+                    cachedData[cached.dataName] = {};
                 }
-                cachedData.cachedTime = Date.now();
-                cachedData.timesCalled++;
-                return res.json(data);
-            }).catch(error => res.send(error));
-        }
+                cachedData[cached.dataName][cached.name] = data;
+            }
+            cachedData.cachedTime = Date.now();
+            cachedData.timesCalled++;
+            return res.json(data);
+        }).catch(error => res.send(error));
     }
     twitterUserList (req, res) {
         const urlParams = req.params;
