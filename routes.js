@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function(app) {
+module.exports = function(app, twitterClientParams) {
 
     app.use('*', (req, res, next) => {
       res.header("Access-Control-Allow-Origin", "*");
@@ -10,7 +10,10 @@ module.exports = function(app) {
       next();
     });
   
-    app.use('/api/twitter', require('./api/twitter'));
+    app.use('/api/twitter', (req, res, next) => {
+      req.twitterClient = twitterClientParams;
+      next();
+    }, require('./api/twitter'));
   
     app.route('/:url(api|auth|components|app|assets)/*')
      .get((req, res) => res.status(404).send('Not Found'));

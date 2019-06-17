@@ -1,7 +1,6 @@
 'use strict';
 
 const TwitterClient = require('twitter');
-const config = require('../../config.json');
 
 class TwitterController {
     constructor() {
@@ -12,12 +11,17 @@ class TwitterController {
             cachedTime: 0,
             twitterList: null
         };
-        this.client = new TwitterClient({
-            consumer_key: config.consumerKey,
-            consumer_secret: config.consumerSecret,
-            access_token_key: config.accessToken,
-            access_token_secret: config.accessTokenSecret
-        });
+        this.client = null;
+    }
+    setTwitterClientConfig(data) {
+        if (this.client === null) {
+            this.client = new TwitterClient({
+                consumer_key: data.consumerKey,
+                consumer_secret: data.consumerSecret,
+                access_token_key: data.accessToken,
+                access_token_secret: data.accessTokenSecret
+            });;
+        }
     }
     twitterAPICallHelper(res, cached, apiPromise) {
         const MAX_TIMEOUT = this.MAX_TIMEOUT;
@@ -42,12 +46,18 @@ class TwitterController {
             return res.json(data);
         }).catch(error => res.send(error));
     }
-    twitterUserList (req, res) {
-        const urlParams = req.params;
-        const username = urlParams.username;
+    twitterUserList(req, res) {
+        const {twitterClient, params} = req;
         const url = `statuses/user_timeline`;
-        const params = {screen_name: username, count: 30};
-        return this.twitterAPICallHelper(res, {dataName: 'twitterList', name: username}, this.client.get(url, params));
+        const {username} = params;
+        const newParams = {screen_name: username, count: 30};
+        this.setTwitterClientConfig(twitterClient);
+        return this.twitterAPICallHelper(res, {
+                dataName: 'twitterList',
+                name: username
+            },
+            this.client.get(url, newParams)
+        );
     }
     
 }

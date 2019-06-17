@@ -2,10 +2,10 @@
 
 const express = require('express');
 
-const controller = require('./twitter.controller');
+const twCtrl = require('./twitter.controller');
 
 const router = express.Router();
 
-router.get('/tweets/:username', controller.twitterUserList.bind(controller));
+router.get('/tweets/:username', twCtrl.twitterUserList.bind(twCtrl));
 
 module.exports = router;

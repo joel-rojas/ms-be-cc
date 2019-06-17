@@ -1,6 +1,7 @@
 "use strict";
 
-const {serverUrl, serverPort} = require('./config');
+const {serverUrl, serverPort, consumerKey,
+    consumerSecret, accessToken, accessTokenSecret} = require('./config');
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -21,7 +22,12 @@ app.use(bodyParser.json({limit: '50mb'}));
 app.use(cors());
 app.options('*', cors());
 
-routes(app);
+routes(app, {
+    consumerKey,
+    consumerSecret,
+    accessToken,
+    accessTokenSecret
+});
 
 // Start server
 server.listen(serverPort, serverUrl, function () {
