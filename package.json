@@ -4,7 +4,7 @@
   "description": "An small Twitter REST API app",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node -r config index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -27,5 +27,8 @@
     "cors": "^2.8.5",
     "express.js": "^1.0.0",
     "twitter": "^1.7.1"
+  },
+  "devDependencies": {
+    "dotenv": "^8.0.0"
   }
 }
