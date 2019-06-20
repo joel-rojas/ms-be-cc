@@ -10,7 +10,7 @@ module.exports = function(app, twitterClientParams) {
       next();
     });
   
-    app.use('/api/twitter', (req, res, next) => {
+    app.use('/twitter', (req, res, next) => {
       req.twitterClient = twitterClientParams;
       next();
     }, require('./api/twitter'));
