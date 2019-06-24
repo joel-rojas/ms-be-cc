@@ -50,7 +50,7 @@ class TwitterController {
         const {twitterClient, params} = req;
         const url = `statuses/user_timeline`;
         const {username} = params;
-        const newParams = {screen_name: username, count: 30};
+        const newParams = {screen_name: username, count: 10};
         this.setTwitterClientConfig(twitterClient);
         return this.twitterAPICallHelper(res, {
                 dataName: 'twitterList',
