@@ -1,3 +1,41 @@
-## Twitter API Server
+# Twitter API Server
 
-This small REST API works to specifically get data from Twitter statuses/user_timeline API.
+This REST API back-end app works as a server for [twitter posts app](https://joel-rojas.github.io/twitter-posts-app) implemented by me. It uses a single Twitter API endpoint to get twitter posts from an specific user.
+
+## Features
+
+* It is deployed in a AWS EC2 instance and uses AWS Elastic Load Balance to enable the app to be opened on HTTPS protocol; plus, it uses AWS Certification Manager to setup custom SSL certificates that enables encrypted data transference between the app server and the front-end app.
+
+* It integrates Apache web server to reverse proxy the server URL with default app's URL and to force it to connect through HTTPS protocol.
+
+* By the use of the AWS ELB, the app's IP is covered by my custom Canonical Name DNS record: `twserver.emersonrojas.com`
+
+* This app is implemented using Express.js to handle the API routing configuration and twitter API client configuration.
+
+* Uses dotenv npm package to import environment variables for the app like Twitter client API keys and server url + port values.
+
+## Tech Stack
+
+* Node.js
+* Express.js
+* Twitter client API
+* DotEnv
+
+## Setup and Usage
+
+Before cloning the app, make sure you have installed [Node.js 8.x](https://nodejs.org/en/download/releases/) version and also to get [developer login credentials](https://developer.twitter.com/) to use Twitter APIs. **Note**: To get it run locally and without HTTPS protocol, these Twitter client API keys have to be set in a `.env` file within the root folder of the app:
+
+```text
+    CONSUMER_KEY = "{CONSUMER_KEY}"
+    CONSUMER_SECRET = "{CONSUMER_SECRET}"
+    ACCESS_TOKEN = "{ACCESS_TOKEN}"
+    ACCESS_TOKEN_SECRET = "{ACCESS_TOKEN_SECRET}'"
+    SERVER_URL = "127.0.0.1"
+    SERVER_PORT = "7890"
+```
+
+Finally, run a development server with the following command: `npm run start`
+
+## License
+
+MIT license - 2019 Emerson Joel Rojas Soliz
