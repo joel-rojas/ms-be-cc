@@ -8,7 +8,7 @@ This REST API back-end app works as a server for [twitter posts app](https://joe
 
 * It integrates Apache web server to reverse proxy the server URL with default app's URL and to force it to connect through HTTPS protocol.
 
-* By the use of the AWS ELB, the app's IP is covered by my custom Canonical Name DNS record: `twserver.emersonrojas.com`
+* By the use of the AWS ELB, the app's IP is covered by a custom Canonical Name DNS record from my personal domain: `twserver.emersonrojas.com`
 
 * This app is implemented using Express.js to handle the API routing configuration and twitter API client configuration.
 
