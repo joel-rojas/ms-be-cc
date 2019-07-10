@@ -14,6 +14,14 @@ This REST API back-end app works as a server for [twitter posts app](https://joe
 
 * Uses dotenv npm package to import environment variables for the app like Twitter client API keys and server url + port values.
 
+As for to-do list, some stuff could be made in the app:
+
+* Use of `PM2`, `Forever` or `Nodemon` npm packages to let the app keep running forever no matter if it somehow throws runtime errors and it could turn off automatically.
+
+* Integrate bundling tools like `webpack` to let the app be built with custom production/development rules like minifying the code, using ES6 or Typescript syntax, etc.
+
+* Use of unit testing by installing tools like `jest` to test the API endpoint as for example.
+
 ## Tech Stack
 
 * Node.js
@@ -23,7 +31,7 @@ This REST API back-end app works as a server for [twitter posts app](https://joe
 
 ## Setup and Usage
 
-Before cloning the app, make sure you have installed [Node.js 8.x](https://nodejs.org/en/download/releases/) version and also to get [developer login credentials](https://developer.twitter.com/) to use Twitter APIs. **Note**: To get it run locally and without HTTPS protocol, these Twitter client API keys have to be set in a `.env` file within the root folder of the app:
+Before cloning the app, make sure you have installed [Node.js 8.x](https://nodejs.org/en/download/releases/) version and also to get [developer login credentials](https://developer.twitter.com/) to use Twitter APIs. **Note**: To get it run locally and without HTTPS protocol, these Twitter client API keys and server values have to be set in a `.env` file within the root folder of the app:
 
 ```text
     CONSUMER_KEY = "{CONSUMER_KEY}"
