@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/joel-rojas/ms-be-code-challenge.git"
+    "url": "git+https://github.com/joel-rojas/twitter-posts-rest-api.git"
   },
   "keywords": [
     "TwitterAPI",
@@ -19,11 +19,12 @@
   "author": "Emerson Joel Rojas Soliz",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/joel-rojas/ms-be-code-challenge/issues"
+    "url": "https://github.com/joel-rojas/twitter-posts-rest-api/issues"
   },
-  "homepage": "https://github.com/joel-rojas/ms-be-code-challenge#readme",
+  "homepage": "https://github.com/joel-rojas/twitter-posts-rest-api#readme",
   "dependencies": {
-    "body-parser": "^1.18.3",
+    "async": "^2.6.3",
+    "connect-timeout": "^1.9.0",
     "cors": "^2.8.5",
     "express.js": "^1.0.0",
     "twitter": "^1.7.1"
