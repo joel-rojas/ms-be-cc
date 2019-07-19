@@ -42,8 +42,8 @@ class TwitterController {
                 return res.json({error});
             }
             cachedData.cachedTime = Date.now();
-            cachedData.twitterList = data;
-            return res.json({data});
+            cachedData.twitterList = [...data[0], ...data[1], ...data[2]];
+            return res.json(cachedData.twitterList);
         });
     }
 }
