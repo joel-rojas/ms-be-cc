@@ -1,8 +1,8 @@
 'use strict';
+const timeout = require('connect-timeout');
 
 module.exports = function(app, twitterClientParams) {
-  
-    app.use('/twitter', (req, res, next) => {
+    app.use('/twitter', timeout('5s'), (req, res, next) => {
       req.twitterClient = twitterClientParams;
       next();
     }, require('./api/twitter'));
