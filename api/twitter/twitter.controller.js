@@ -38,7 +38,7 @@ class TwitterController {
             async () => await this.client.get(url, {screen_name: user, count: 10})
         );
         async.parallel(apiList, (error, data) => {
-            if (error) {
+            if (error || req.timedout) {
                 return res.json({error});
             }
             cachedData.cachedTime = Date.now();
