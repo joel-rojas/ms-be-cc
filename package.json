@@ -1,5 +1,5 @@
 {
-  "name": "ms-be-a-code-challenge",
+  "name": "twitter-posts-rest-api",
   "version": "1.0.0",
   "description": "An small Twitter REST API app",
   "main": "index.js",
