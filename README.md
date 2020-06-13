@@ -4,11 +4,11 @@ This REST API back-end app works as a server for [twitter posts app](https://joe
 
 ## Features
 
-* It is deployed in a AWS EC2 instance and uses AWS Elastic Load Balance to enable the app to be opened on HTTPS protocol; plus, it uses AWS Certification Manager to setup custom SSL certificates that enables encrypted data transference between the app server and the front-end app.
+* It is deployed in a DigitalOcean Droplet and LoadBalancer to enable the app to be opened on HTTPS protocol; plus, it uses DigitalOcean Load Balancer SSL certification tool to setup custom SSL certificates that enables encrypted data transference between the app server and the front-end app.
 
-* It integrates Apache web server to reverse proxy the server URL with default app's URL and to force it to connect through HTTPS protocol.
+* It integrates Nginx web server to reverse proxy the server URL with default app's URL and to force it to connect through HTTPS protocol.
 
-* By the use of the AWS ELB, the app's IP is covered by a custom Canonical Name DNS record from my personal domain: `twserver.emersonrojas.com`
+* By the use of the DigitalOcean Load Balancer, the app's IP is set as a A-type DNS record with my personal domain: `twserver.emersonrojas.com` as name and Load Balancer's IP as value.
 
 * This app is implemented using Express.js to handle the API routing configuration and twitter API client configuration.
 
